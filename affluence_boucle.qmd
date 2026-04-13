@@ -1,0 +1,66 @@
+---
+title: "Affluence d'une boucle vélo"
+author: "Amélie Pires"
+format: html
+params:
+  boucle: 880
+editor: source
+---
+
+# TD6
+
+# Rapport 
+
+## Q2
+
+```{r}
+#| label: param-boucle #pour donner un nom au bloc de code
+
+boucle <- 880
+```
+
+## Q3
+
+```{r}
+#| label: graph-affluence
+#| warning: false
+#| message: false
+#| fig-cap: "Affluence par jour de la semaine pour la boucle sélectionnée"
+
+library(firstlib.pires)
+
+df_boucle <- filtrer_trajet(df_velo, numero = boucle)
+
+plot_distribution_semaine(df_boucle)
+```
+
+
+## Q4
+
+dans le YAML, ajouter 
+params:
+  boucle: 880
+
+```{r}
+boucle <- params$boucle
+
+library(firstlib.pires)
+
+df_boucle <- filtrer_trajet(df_velo, numero = boucle)
+
+plot_distribution_semaine(df_boucle)
+```
+
+renv::snapshot() dans la console pour mettre à jour les renv
+
+Compiler le doc quarto avec une autre boucle (dans la console) :
+
+quarto::quarto_render(
+  "affluence_boucle.qmd",
+  execute_params = list(boucle = 880)
+)
+
+
+
+
+
