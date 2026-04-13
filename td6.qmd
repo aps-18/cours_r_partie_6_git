@@ -1,0 +1,48 @@
+---
+title: "td6"
+author: "Amélie Pires"
+format: html
+editor: source
+---
+
+# TD6
+
+# Préparation
+
+## Q1
+
+- créer répertoire sur git 
+- créer nouveau projet sur rstudio (avec version controle et git)
+- faire un commit/push
+
+```{r}
+renv::init()
+```
+Ça crée :
+
+- dossier renv/
+- fichier renv.lock
+
+Ça permet :
+
+- fixer les versions des packages
+- rendre le projet reproductible
+
+
+## Q2
+
+```{r}
+install.packages("remotes")
+remotes::install_github("aps-18/firstlib.pires")
+library(firstlib.pires)
+```
+
+
+## Q3
+
+```{r}
+data("df_velo")
+head(df_velo)
+plot_distribution_semaine(df_velo) #test fonction
+```
+
