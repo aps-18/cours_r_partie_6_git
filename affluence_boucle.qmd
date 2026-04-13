@@ -1,9 +1,17 @@
 ---
 title: "Affluence d'une boucle vélo"
 author: "Amélie Pires"
-format: html
+date: today
+format:
+  html:
+    toc: true
+    theme: cosmo
+    embed-resources: true
+execute:
+  echo: false
 params:
   boucle: 880
+  mois: 1
 editor: source
 ---
 
@@ -62,5 +70,43 @@ quarto::quarto_render(
 
 
 
+## Q6
+
+embed-resources: true
+
+--> pour  intègrer toutes les ressources dans le fichier HTML (images, CSS, scripts)
 
 
+## Q7
+
+dans console : 
+renv::snapshot()
+
+--> mettre à jour le fichier renv.lock, qui enregistre les versions des packages utilisés dans le projet afin d’assurer la reproductibilité de l’environnement
+
+
+## Q8
+
+```{r}
+remotes::install_github("aps-18/firstlib.pires")
+
+library(firstlib.pires)
+```
+
+```{r}
+df_boucle <- get_data(
+  boucle = params$boucle,
+  mois = params$mois
+) |>
+  dplyr::mutate(
+    Total = total,
+    probabilite_anomalie = probabilite_presence_anomalie,
+    jour_semaine = jour_de_la_semaine
+  )
+
+plot_distribution_semaine(df_boucle)
+```
+
+```{r}
+renv::snapshot()
+```
